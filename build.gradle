@@ -16,6 +16,10 @@ configurations {
 		extendsFrom annotationProcessor
 	}
 }
+bootJar {
+	archievesBaseName = 'PersonalProject'
+	archievesFileName = 'PersonalProject.jar'
+}
 
 repositories {
 	mavenCentral()
