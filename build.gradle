@@ -17,8 +17,8 @@ configurations {
 	}
 }
 bootJar {
-	archievesBaseName = 'PersonalProject'
-	archievesFileName = 'PersonalProject.jar'
+	archivesBaseName = 'PersonalProject'
+	archiveFileName = 'PersonalProject.jar'
 }
 
 repositories {
