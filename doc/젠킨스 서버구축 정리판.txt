@@ -1,0 +1,37 @@
+1.리눅스 서버에 JDK 설치 11 or 17
+	1-1 rpm다운
+	1-2  rpm설치 
+2.리눅스 서버에 젠킨스 설치 
+	2-1 Generic Java Pack or Linux Download
+		2-1-1 Generic Java Pack
+			다운로드 후 war파일 실행
+		2-1-2 Linux Download
+			Ubuntu/Debian -> 레드햇 기반과 많이 다름 
+				apt-get
+			RedHat(안정적임, 보수적)/Fedora(지원기간이 짧음)/Alma/Rocky/CentOS(레드햇과 유사, 상용패키지 			미포함 , 기술지원X)/AmazonLinux/OracleLinux
+				yum install
+	Error Handleing
+		libfontmanager.so: libfreetype.so.6: cannot open shared object file
+			-> sudo yum install freetype
+			-> sudo find / -name "libfreetype.so.6"
+			-> export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64/libfreetype.so.6
+	so확장자 :
+	   여러 프로그램상에서 공유되는 라이브러리 형태의 바이너리 파일 
+	   여러 프로그램들 간에 공유함 주로 C/C++로 작성된 라이브러리 
+	LD_LIBRARY_PATH : 
+      	   공유 파일을 찾기 위한 약속된 환경변수 
+3.젠킨스 세팅
+	3-1 깃 설치
+		yum install git
+	3-2 빌드
+		/var/lib/jenkins/workspace/personalproject 경로에 프로젝트 코드가 들어옴
+	3-3with gradle 
+		빌드 후 gradle 스크립트 실행
+			Invoke Gradle Script
+				Invoke Gradle
+					젠킨스 서버에 설치된 그레이들
+			Use Gradle Wrapper
+				프로젝트 안에 있는 그레이들
+				Wrapper location
+					Gradle Wrapper의 스크립트 위치 (gradlew)
+	

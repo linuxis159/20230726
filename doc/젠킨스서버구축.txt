@@ -1,0 +1,47 @@
+1.JDK 1.8 이상으로 설치 
+wget https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.rpm
+rpm -ivh jdk-17_linux-x64_bin.rpm
+gitLens
+https://www.jenkins.io/download/에서 Generic Java Pack
+java -jar jenkins.war
+	libfontmanager.so: libfreetype.so.6: cannot open shared object file 발생 
+	-> yum install libfreetype6 ->  libfreetype.so.6있는지 확인
+		find / -name 'libfreetype' -> / 경로 밑에있는 해당 문자열 포함된 파일 및 디렉토리 검색?
+		-> 없음
+so 확장자 공유라이브러리파일
+리눅스 정보 확인 
+cat /etc/os-release
+libfreetype.so.6 때문에 다른방법
+https://pkg.jenkins.io/redhat-stable/ 링크 기준으로 
+	sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+  	sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+ 	yum install fontconfig java-11-openjdk
+  	yum install jenkins
+
+
+해결 : 
+	sudo yum install freetype
+	sudo find / -name "libfreetype.so.6"
+	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64/libfreetype.so.6
+so확장자 :
+	여러 프로그램상에서 공유되는 라이브러리 형태의 바이너리 파일 
+	여러 프로그램들 간에 공유함 주로 C/C++로 작성된 라이브러리 
+LD_LIBRARY_PATH : 공유 파일을 찾기 위한 약속된 환경변수 
+
+깃허브설정 
+	젠킨스서버에 깃이 설치되어있어야됨
+		yum install git 
+	빌드시
+	/var/lib/jenkins/workspace/personalproject 경로에 프로젝	트 코드가 들어옴
+
+	빌드 후 gradle 스크립트 실행
+		Invoke Gradle Script
+			Invoke Gradle
+				젠킨스 서버에 설치된 그레이들
+			Use Gradle Wrapper
+				프로젝트 안에 있는 그레이들
+				
+				Wrapper location
+					Gradle Wrapper의 스크립트 위치 (gradlew)
+	git에서 프로젝트 가져와서 젠킨스 서버로 옳기는 과정에서 
+	프로젝트 안의 gradlew의 권한중에 실행권한이 없어서 invoke Gradle Script에서 permission denied
