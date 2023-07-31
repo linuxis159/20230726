@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>위키</title>
+    <title>Search Page</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
 </head>
 <body>
-<h1>Welcome to My Wiki</h1>
-<form action="#" th:action="@{/search}" th:method="get">
-    <input type="text" name="q" placeholder="문서 검색">
-    <button type="submit">검색</button>
-</form>
-<ul>
-    <li><a th:href="@{/wiki/programming}">Programming</a></li>
-    <li><a th:href="@{/wiki/history}">History</a></li>
-    <li><a th:href="@{/wiki/science}">Science</a></li>
-</ul>
+<div class="center">
+    <form th:action="@{/search}" method="get">
+        <input type="text" th:name="searchWord" placeholder="Search..." />
+        <button type="submit">Search</button>
+    </form>
+</div>
 </body>
 </html>
