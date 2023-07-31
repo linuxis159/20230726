@@ -13,6 +13,7 @@ public class Main {
         return "main";
     }
     @GetMapping("/search")
+    //th:name="searchWord"
     public String search(@RequestParam("searchWord") String query)
     {
         return "main";
