@@ -1,0 +1,13 @@
+.menu-template {
+    text-align: left;
+    display : inline;
+    float : left;
+}
+
+.text-label {
+    margin-right: 20px;
+}
+
+.input-text {
+    float:right
+}
