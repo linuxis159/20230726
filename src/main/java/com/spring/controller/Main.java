@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class Main {
+    //
     @RequestMapping("/")
     public String main(){
         return "main";
