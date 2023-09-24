@@ -6,8 +6,9 @@ const MenuTemplate = () => {
     const [menuLangPack, setMenuLangPack] = useState('');
     const [url, setUrl] = useState('');
     const sendData = async () => {
+            const serverUrl = process.env.REACT_APP_LOCAL_SERVER_URL;
 
-            fetch("/createMenuTemplate",{
+            fetch(`${serverUrl}/createMenuTemplate`,{
                 method : 'POST',
                 headers : {
                     'Content-Type' : 'application/json'

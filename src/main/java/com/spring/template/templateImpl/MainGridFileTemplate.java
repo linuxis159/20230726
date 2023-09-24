@@ -1,8 +1,11 @@
-package com.spring.template;
+package com.spring.template.templateImpl;
 
 import com.spring.dto.MenuTemplate;
+import com.spring.template.MenuJSFileTemplateAB;
+import com.spring.template.MenuJSFileTemplateIF;
+import com.spring.template.MenuJSFileType;
 
-public class MainGridFileTemplate extends MenuJSFileTemplateAB implements MenuJSFileTemplateIF{
+public class MainGridFileTemplate extends MenuJSFileTemplateAB implements MenuJSFileTemplateIF {
 
 	public MainGridFileTemplate(MenuTemplate menuTemplate, MenuJSFileType fileType) {
 		super(menuTemplate, fileType);
@@ -10,7 +13,7 @@ public class MainGridFileTemplate extends MenuJSFileTemplateAB implements MenuJS
 
 	@Override
 	public String getTemplate() {
-    	template = "Ext.define('"+ url + fileType.getFileType() + "', {\n" +
+    	template = "Ext.define('"+ menuTemplate.getUrl() + fileType.getFileType() + "', {\n" +
                 "    extend: 'vc.view.common.widget.ExGridEditor',\n" +
                 "    alias: 'widget."+this.getFileName().toLowerCase()+"',\n" +
                 "    selModel: 'rowmodel',\n" +
@@ -153,10 +156,6 @@ public class MainGridFileTemplate extends MenuJSFileTemplateAB implements MenuJS
 		return template;
 	}
 
-	@Override
-	void checkJSSyntex() {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 }

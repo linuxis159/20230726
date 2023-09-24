@@ -29,7 +29,7 @@ public class MenuTemplateController {
         deleteDirectory(new File("jsTemplateZip"));
         List<MenuJSFileTemplateIF> menuJSFileTemplates = new ArrayList();
         for(MenuJSFileType menuJSFileType : MenuJSFileType.values()){
-            Class<?> clazz = Class.forName("com.spring.template."+menuJSFileType.getImpletationClassName());
+            Class<?> clazz = Class.forName("com.spring.template.templateImpl."+menuJSFileType.getImpletationClassName());
             Constructor<?> ctor = clazz.getConstructor(MenuTemplate.class, MenuJSFileType.class);
             MenuJSFileTemplateIF fileTemplate = (MenuJSFileTemplateIF) ctor.newInstance(menuTemplate, menuJSFileType);
             menuJSFileTemplates.add(fileTemplate);

@@ -1,8 +1,11 @@
-package com.spring.template;
+package com.spring.template.templateImpl;
 
 import com.spring.dto.MenuTemplate;
+import com.spring.template.MenuJSFileTemplateAB;
+import com.spring.template.MenuJSFileTemplateIF;
+import com.spring.template.MenuJSFileType;
 
-public class PanelFileTemplate extends MenuJSFileTemplateAB implements MenuJSFileTemplateIF{
+public class PanelFileTemplate extends MenuJSFileTemplateAB implements MenuJSFileTemplateIF {
 	
 	public PanelFileTemplate(MenuTemplate menuTemplate, MenuJSFileType fileType) {
 		super(menuTemplate, fileType);
@@ -46,11 +49,7 @@ public class PanelFileTemplate extends MenuJSFileTemplateAB implements MenuJSFil
 		return template;
 	}
 
-	@Override
-	void checkJSSyntex() {
-		// TODO Auto-generated method stub
-		
-	}
+
 	
 
 }
