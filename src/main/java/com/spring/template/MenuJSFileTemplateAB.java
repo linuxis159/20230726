@@ -25,6 +25,6 @@ public abstract class MenuJSFileTemplateAB {
 	}
 
 	
-	abstract void checkJSSyntex();
+
 	
 }
