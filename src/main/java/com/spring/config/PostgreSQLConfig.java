@@ -2,6 +2,7 @@ package com.spring.config;
 
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +10,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.Statement;
 
-@Component
+@Configuration
 public class PostgreSQLConfig implements ApplicationRunner {
     private final DataSource dataSource;
     private final JdbcTemplate jdbcTemplate;
