@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './Header.css';
 
 const Header = () => {
@@ -7,7 +7,7 @@ const Header = () => {
 
     const serverUrl = process.env.REACT_APP_LOCAL_SERVER_URL;
     const handlerSearch = async () => {
-        const response = await fetch(`${serverUrl}/search?query=${query}`);
+        const response = await fetch(`${serverUrl}/query?query=${query}`);
         const data = await response.json();
         setResults(data);
     }
@@ -15,14 +15,18 @@ const Header = () => {
         <div className='header'>
             <input type="text" value={query} onChange={e => {
                 setQuery(e.target.value);
-                handleSearch();
+                handlerSearch();
 
             }
             } />
-            <ul>
-
-            </ul>
             <button type="submit">Search</button>
+            {results.length > 0 && (
+                <ul>
+                    {results.map((result, index) => (
+                        <li key={index}>{result}</li>
+                    ))}
+                </ul>
+            )}
         </div>
     )
 }

@@ -1,3 +1,4 @@
+/*
 package com.spring.service.search;
 
 import lombok.AllArgsConstructor;
@@ -29,3 +30,4 @@ public class SearchConfig {
         return unmodifiableList;
     }
 }
+*/

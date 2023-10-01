@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequiredArgsConstructor
@@ -17,10 +18,19 @@ public class Main {
     public String main(){
         return "main";
     }
-    @GetMapping("/search")
-    public Document search(@RequestParam("searchWord") String query)
+
+    @GetMapping("/query")
+    @ResponseBody
+    public String[] search(@RequestParam("query") String query)
+    {
+        String[] titles = searchService.findTitlesByWord(query);
+        return titles;
+    }
+}
+/*    @GetMapping("/search")
+    public Document search(@RequestParam("query") String query)
     {
         Document document = searchService.findDocBySearch(query);
         return document;
     }
-}
+}*/

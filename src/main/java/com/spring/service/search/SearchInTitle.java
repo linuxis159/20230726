@@ -8,12 +8,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class SearchInTitle implements Search{
+public class SearchInTitle{
     private final DocumentMapper documentMapper;
 
-    @Override
-    public Document search(String word) {
-        documentMapper.selectDocumentInTitle(word);
-        return documentMapper.selectDocumentInTitle(word);
+
+    public String[] searchTitles(String word) {
+        String[] titles = documentMapper.selectTitlesByWord(word);
+        return titles;
     }
 }
