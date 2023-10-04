@@ -23,6 +23,7 @@ public class Main {
     @ResponseBody
     public String[] search(@RequestParam("query") String query)
     {
+        System.out.println("입력된 텍스트 : " +query);
         String[] titles = searchService.findTitlesByWord(query);
         return titles;
     }

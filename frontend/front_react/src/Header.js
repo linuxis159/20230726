@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './Header.css';
+
 
 const Header = () => {
     const [query, setQuery] = useState('');
@@ -11,12 +12,15 @@ const Header = () => {
         const data = await response.json();
         setResults(data);
     }
+    useEffect(() => {
+        if (query) { // query가 비어있지 않을 때만 검색을 실행합니다.
+            handlerSearch();
+        }
+    }, [query]);
     return(
         <div className='header'>
             <input type="text" value={query} onChange={e => {
                 setQuery(e.target.value);
-                handlerSearch();
-
             }
             } />
             <button type="submit">Search</button>
