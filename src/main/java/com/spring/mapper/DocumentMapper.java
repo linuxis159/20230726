@@ -8,4 +8,7 @@ import org.apache.ibatis.annotations.Select;
 public interface DocumentMapper {
     @Select("SELECT *  FROM \"Doc\" WHERE \"Title\" LIKE '%' || #{word} || '%'")
     String[] selectTitlesByWord(String word);
+
+    @Select("SELECT *  FROM \"Doc\" WHERE \"Title\" =  #{word}")
+    Document selectDocByWord(String word);
 }

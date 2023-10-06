@@ -32,4 +32,8 @@ public class SearchService {
     public String[] findTitlesByWord(String word) {
         return documentMapper.selectTitlesByWord(word);
     }
+
+    public Document findDocByWord(String word) {
+        return documentMapper.selectDocByWord(word);
+    }
 }
