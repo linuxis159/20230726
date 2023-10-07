@@ -9,10 +9,10 @@ const Header = () => {
     const [results, setResults] = useState([]);
 
     const serverUrl = process.env.REACT_APP_LOCAL_SERVER_URL;
-    const handlerSearch = async () => {
-        const response = await fetch(`${serverUrl}/searchTitle?query=${query}`);
-        const data = await response.json();
-        setResults(data);
+    const handlerSearch = async (data) => {
+        const response = await fetch(`${serverUrl}/searchTitle?query=${data}`);
+        const serverResponse = await response.json();
+        setResults(serverResponse);
     }
 
     const handlerSearchDoc = async () => {
@@ -24,11 +24,7 @@ const Header = () => {
     const handleClick = (text) => {
         setQuery(text);
     };
-    useEffect(() => {
-        if (query) { // query가 비어있지 않을 때만 검색을 실행합니다.
-            handlerSearch();
-        }
-    }, [query]);
+
     return(
 
         <div className='header'>
@@ -38,10 +34,11 @@ const Header = () => {
             } />*/}
                 <Form.Control
                     type="text"
-                    value={query}
                     onChange={e => {
                         setQuery(e.target.value);
+                        handlerSearch(e.target.value)
                     }}
+
                     placeholder="Start typing..."
                 />
             <button type="submit">Search</button>
