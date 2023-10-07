@@ -6,13 +6,24 @@ import './WriteDocument.css';
 
 const WriteDoucment = () => {
     const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
+    const [desc, setDesc] = useState('');
+    const [results, setResults] = useState('')
 
-    const handleSubmit = () => {
-        // 서버에 데이터를 전송하는 로직
-        // 예: axios.post('/api/posts', { title, content });
-        console.log('제목:', title);
-        console.log('내용:', content);
+    const handleSubmit = async () => {
+        const serverUrl = process.env.REACT_APP_LOCAL_SERVER_URL;
+        const data = {
+            title,
+            desc
+        }
+        const response = await fetch(`${serverUrl}/writeDocument`, {
+            method : 'POST',
+            headers : {
+                'Content-Type' : 'application/json'
+            },
+            body : JSON.stringify(data)
+        });
+        const serverResponse = await response.json();
+        setResults(serverResponse);
     };
 
     return (
@@ -23,7 +34,7 @@ const WriteDoucment = () => {
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="제목을 입력하세요."
             />
-            <ReactQuill className = "descriptionForm" value={content} onChange={setContent} />
+            <ReactQuill className = "descriptionForm" value={desc} onChange={setDesc} />
             <br/>
             <br/>
             <br/>
