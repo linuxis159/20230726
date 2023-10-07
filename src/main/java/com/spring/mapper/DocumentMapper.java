@@ -14,7 +14,7 @@ public interface DocumentMapper {
     Document selectDocByWord(String word);
 
     @Insert("INSERT INTO public.\"Doc\"\n" +
-            "(\"Title\", \"Desc\", \"CreateUser\", \"CreateDate\", \"DocumentId\")\n" +
-            "VALUES( #{title},  #{desc}, 'user', now(), nextVal('documentId'))")
+            "(\"Title\", \"Desc\", \"CreateUser\", \"CreateDate\")\n" +
+            "VALUES( #{title},  #{desc}, 'user', now())")
     int insertDoc(Document document);
 }
