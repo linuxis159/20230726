@@ -1,10 +1,11 @@
 package com.spring.template;
 
+
 public enum MenuJSFileType {
-	Panel("", "PanelFileTemplate"),
-	MainGrid("Main", "MainGridFileTemplate"),
-	Model("Model", "ModelFileTemplate"),
-	Controller("Controller", "ControllerFileTemplate");
+	MenuPanel("", "MenuPanelFileTemplate"),
+	MenuMainGrid("Main", "MenuMainGridFileTemplate"),
+	MenuModel("Model", "MenuModelFileTemplate"),
+	MenuController("Controller", "MenuControllerFileTemplate");
 	
 	private final String fileType;
 	private final String impletationClassName;

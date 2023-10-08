@@ -1,19 +1,20 @@
-package com.spring.template.templateImpl;
+package com.spring.template.menu.templateImpl;
 
 import com.spring.dto.MenuTemplate;
-import com.spring.template.MenuJSFileTemplateAB;
-import com.spring.template.MenuJSFileTemplateIF;
+import com.spring.template.JSFileTemplateAB;
+import com.spring.template.JSFileTemplateIF;
 import com.spring.template.MenuJSFileType;
 
-public class ModelFileTemplate extends MenuJSFileTemplateAB implements MenuJSFileTemplateIF {
 
-	public ModelFileTemplate(MenuTemplate menuTemplate, MenuJSFileType fileType) {
+public class MenuModelFileTemplate extends JSFileTemplateAB implements JSFileTemplateIF {
+
+	public MenuModelFileTemplate(MenuTemplate menuTemplate, MenuJSFileType fileType) {
 		super(menuTemplate, fileType);
 	}
 
 	@Override
 	public String getTemplate() {
-	  	template = "Ext.define('"+ menuTemplate.getUrl() + fileType.getFileType() + "', {\n"
+	  	template = "Ext.define('"+ menuTemplate.getUrl() + menuFileType.getFileType() + "', {\n"
     			+ "    extend:'Ext.app.ViewModel', \r\n"
     			+ "    alias: 'viewmodel."+getPanelName().toLowerCase()+"',\r\n"
     			+ "    stores:{ \r\n"

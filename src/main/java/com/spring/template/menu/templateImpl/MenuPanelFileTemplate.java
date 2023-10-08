@@ -1,13 +1,14 @@
-package com.spring.template.templateImpl;
+package com.spring.template.menu.templateImpl;
 
 import com.spring.dto.MenuTemplate;
-import com.spring.template.MenuJSFileTemplateAB;
-import com.spring.template.MenuJSFileTemplateIF;
+import com.spring.template.JSFileTemplateAB;
+import com.spring.template.JSFileTemplateIF;
 import com.spring.template.MenuJSFileType;
 
-public class PanelFileTemplate extends MenuJSFileTemplateAB implements MenuJSFileTemplateIF {
+
+public class MenuPanelFileTemplate extends JSFileTemplateAB implements JSFileTemplateIF {
 	
-	public PanelFileTemplate(MenuTemplate menuTemplate, MenuJSFileType fileType) {
+	public MenuPanelFileTemplate(MenuTemplate menuTemplate, MenuJSFileType fileType) {
 		super(menuTemplate, fileType);
 	}
 
@@ -32,7 +33,7 @@ public class PanelFileTemplate extends MenuJSFileTemplateAB implements MenuJSFil
     			+ "    },{\r\n"
     			+ "    	split:true,\r\n"
     			+ "        region:'center',\r\n"
-    			+ "        xtype:'"+(fileName+MenuJSFileType.MainGrid.getFileType().toLowerCase())+"',\r\n"
+    			+ "        xtype:'"+(fileName+MenuJSFileType.MenuMainGrid.getFileType().toLowerCase())+"',\r\n"
     			+ "        reference:'mainGrid',\r\n"
     			+ "        authId:'MAIN_GRID_"+menuTemplate.getMenuCode()+"',\r\n"
     			+ "        editMode:'cell',                            // 그리드 셀 편집모드\r\n"

@@ -1,24 +1,42 @@
 package com.spring.template;
 
 import com.spring.dto.MenuTemplate;
-import com.spring.template.templateImpl.ControllerFileTemplate;
-import com.spring.template.templateImpl.MainGridFileTemplate;
-import com.spring.template.templateImpl.ModelFileTemplate;
-import com.spring.template.templateImpl.PanelFileTemplate;
+import com.spring.dto.PopTemplate;
+import com.spring.template.menu.templateImpl.MenuControllerFileTemplate;
+import com.spring.template.menu.templateImpl.MenuMainGridFileTemplate;
+import com.spring.template.menu.templateImpl.MenuModelFileTemplate;
+import com.spring.template.menu.templateImpl.MenuPanelFileTemplate;
+import com.spring.template.pop.templateImpl.PopControllerFileTemplate;
+import com.spring.template.pop.templateImpl.PopFileTemplate;
+import com.spring.template.pop.templateImpl.PopModelFileTemplate;
+
 
 public class FileTemplateFactory {
-	static MenuJSFileTemplateIF createTemplate(MenuTemplate menuTemplate, MenuJSFileType fileType) {
-		switch(fileType) {
-		case Panel:
-			return new PanelFileTemplate(menuTemplate, fileType);
-		case MainGrid:
-			return new MainGridFileTemplate(menuTemplate, fileType);
-		case Controller:
-			return new ControllerFileTemplate(menuTemplate, fileType);
-		case Model:
-			return new ModelFileTemplate(menuTemplate, fileType);
+	static JSFileTemplateIF createMenuTemplate(MenuTemplate menuTemplate, MenuJSFileType menuFileType) {
+		switch(menuFileType) {
+		case MenuPanel:
+			return new MenuPanelFileTemplate(menuTemplate, menuFileType);
+		case MenuMainGrid:
+			return new MenuMainGridFileTemplate(menuTemplate, menuFileType);
+		case MenuController:
+			return new MenuControllerFileTemplate(menuTemplate, menuFileType);
+		case MenuModel:
+			return new MenuModelFileTemplate(menuTemplate, menuFileType);
 		}
         return null;
 		
+	}
+
+	static JSFileTemplateIF createPopTemplate(PopTemplate popTemplate, PopJSFileType popFileType) {
+		switch(popFileType) {
+			case Pop:
+				return new PopFileTemplate(popTemplate, popFileType);
+			case PopController:
+				return new PopControllerFileTemplate(popTemplate, popFileType);
+			case PopModel:
+				return new PopModelFileTemplate(popTemplate, popFileType);
+		}
+		return null;
+
 	}
 }

@@ -1,17 +1,16 @@
 package com.spring.controller;
 
 import com.common.ZipHandler;
-import com.spring.dto.MenuTemplate;
+import com.spring.dto.PopTemplate;
 import com.spring.template.JSFileTemplateIF;
-import com.spring.template.MenuJSFileType;
+import com.spring.template.PopJSFileType;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.io.*;
 import java.lang.reflect.Constructor;
@@ -20,25 +19,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipOutputStream;
 
-@RestController
-public class MenuTemplateController {
-    @PostMapping("/createMenuTemplate")
-    @CrossOrigin(origins = "http://localhost:3000")
-    public ResponseEntity<Resource> createMenuTemplate(@RequestBody MenuTemplate menuTemplate) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, IOException {
+@Controller
+public class PopTemplateController {
+    @PostMapping("/createPopTemplate")
+    public ResponseEntity<Resource> createPopTemplate(@RequestBody PopTemplate popTemplate) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, IOException {
         ZipHandler.deleteDirectory(new File("jsTemplate"));
         ZipHandler.deleteDirectory(new File("jsTemplateZip"));
-        List<JSFileTemplateIF> menuJSFileTemplates = new ArrayList();
-        for(MenuJSFileType menuJSFileType : MenuJSFileType.values()){
-            Class<?> clazz = Class.forName("com.spring.template.menu.templateImpl."+menuJSFileType.getImpletationClassName());
-            Constructor<?> ctor = clazz.getConstructor(MenuTemplate.class, MenuJSFileType.class);
-            JSFileTemplateIF fileTemplate = (JSFileTemplateIF) ctor.newInstance(menuTemplate, menuJSFileType);
-            menuJSFileTemplates.add(fileTemplate);
+        List<JSFileTemplateIF> popJSFileTemplates = new ArrayList();
+        for (PopJSFileType popJSFileType : PopJSFileType.values()) {
+            Class<?> clazz = Class.forName("com.spring.template.pop.templateImpl." + popJSFileType.getImpletationClassName());
+            Constructor<?> ctor = clazz.getConstructor(PopTemplate.class, PopJSFileType.class);
+            JSFileTemplateIF fileTemplate = (JSFileTemplateIF) ctor.newInstance(popTemplate, popJSFileType);
+            popJSFileTemplates.add(fileTemplate);
 
         }
-
-
-        for(JSFileTemplateIF menuJSFileTemplate : menuJSFileTemplates){
-            File newJSFile = new File("jsTemplate" + File.separator + menuJSFileTemplate.getFileName() + ".js");
+        for(JSFileTemplateIF popJSFileTemplate : popJSFileTemplates){
+            File newJSFile = new File("jsTemplate" + File.separator + popJSFileTemplate.getFileName() + ".js");
             if(!newJSFile.exists()) {
 
                 newJSFile.createNewFile();
@@ -46,7 +42,7 @@ public class MenuTemplateController {
             FileWriter fw;
             fw = new FileWriter(newJSFile);
             BufferedWriter writer = new BufferedWriter(fw);
-            writer.write(menuJSFileTemplate.getTemplate());
+            writer.write(popJSFileTemplate.getTemplate());
             writer.close();
         }
 
@@ -64,13 +60,5 @@ public class MenuTemplateController {
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + zipFileName)
                 .body(resource);
-
-
     }
-
-
-
-
-
-
 }

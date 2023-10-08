@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
+import './Document.css'
 
 function Document(){
     const {docTitle} = useParams();
@@ -17,8 +18,8 @@ function Document(){
 
 
     return (
-        <div>
-            {resultDoc.desc}
+        <div  className="desc" dangerouslySetInnerHTML={{__html : resultDoc.desc}}>
+
         </div>
     )
 }

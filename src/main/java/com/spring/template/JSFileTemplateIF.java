@@ -1,6 +1,6 @@
 package com.spring.template;
 
-public interface MenuJSFileTemplateIF {
+public interface JSFileTemplateIF {
 
 	String getFileName();
 	

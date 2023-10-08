@@ -5,8 +5,13 @@ import com.spring.domain.Document;
 import com.spring.service.search.SearchService;
 import com.spring.service.write.WriteService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -34,8 +39,13 @@ public class Main {
         return doc;
     }
     @PostMapping("/writeDocument")
-    public void writeDoucment(@RequestBody Document requstedDocument){
+    public ResponseEntity writeDoucment(@RequestBody Document requstedDocument){
         writeService.writeDocument(requstedDocument);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "Success!");
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
 
     }
 }
