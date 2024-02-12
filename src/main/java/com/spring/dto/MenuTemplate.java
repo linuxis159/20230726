@@ -10,4 +10,7 @@ public class MenuTemplate{
     private String alias;
     private String menuLangPack;
     private String url;
+    private String region;
+    private String gridInfo;
+    private MenuTemplate[] gridItems;
 }

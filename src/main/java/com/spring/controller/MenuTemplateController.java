@@ -24,16 +24,15 @@ import java.util.zip.ZipOutputStream;
 public class MenuTemplateController {
     @PostMapping("/createMenuTemplate")
     @CrossOrigin(origins = "http://localhost:3000")
-    public ResponseEntity<Resource> createMenuTemplate(@RequestBody MenuTemplate menuTemplate) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, IOException {
+    public ResponseEntity<Resource> createMenuTemplate(@RequestBody MenuTemplate[] menuTemplate) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, IOException {
         ZipHandler.deleteDirectory(new File("jsTemplate"));
         ZipHandler.deleteDirectory(new File("jsTemplateZip"));
         List<JSFileTemplateIF> menuJSFileTemplates = new ArrayList();
         for(MenuJSFileType menuJSFileType : MenuJSFileType.values()){
             Class<?> clazz = Class.forName("com.spring.template.menu.templateImpl."+menuJSFileType.getImpletationClassName());
             Constructor<?> ctor = clazz.getConstructor(MenuTemplate.class, MenuJSFileType.class);
-            JSFileTemplateIF fileTemplate = (JSFileTemplateIF) ctor.newInstance(menuTemplate, menuJSFileType);
+            JSFileTemplateIF fileTemplate = (JSFileTemplateIF) ctor.newInstance(menuTemplate[0], menuJSFileType);
             menuJSFileTemplates.add(fileTemplate);
-
         }
 
 
