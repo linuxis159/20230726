@@ -14,7 +14,7 @@ public class MenuModelFileTemplate extends JSFileTemplateAB implements JSFileTem
 
 	@Override
 	public String getTemplate() {
-	  	template = "Ext.define('"+ menuTemplate.getUrl() + menuFileType.getFileType() + "', {\n"
+	  	template = "Ext.define('"+ menuTemplate.getPanelURL() + menuFileType.getFileType() + "', {\n"
     			+ "    extend:'Ext.app.ViewModel', \r\n"
     			+ "    alias: 'viewmodel."+getPanelName().toLowerCase()+"',\r\n"
     			+ "    stores:{ \r\n"

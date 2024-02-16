@@ -24,14 +24,15 @@ import java.util.zip.ZipOutputStream;
 public class MenuTemplateController {
     @PostMapping("/createMenuTemplate")
     @CrossOrigin(origins = "http://localhost:3000")
-    public ResponseEntity<Resource> createMenuTemplate(@RequestBody MenuTemplate[] menuTemplate) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, IOException {
+    public ResponseEntity<Resource> createMenuTemplate(@RequestBody MenuTemplate menuTemplate) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, IOException {
         ZipHandler.deleteDirectory(new File("jsTemplate"));
         ZipHandler.deleteDirectory(new File("jsTemplateZip"));
         List<JSFileTemplateIF> menuJSFileTemplates = new ArrayList();
+
         for(MenuJSFileType menuJSFileType : MenuJSFileType.values()){
             Class<?> clazz = Class.forName("com.spring.template.menu.templateImpl."+menuJSFileType.getImpletationClassName());
             Constructor<?> ctor = clazz.getConstructor(MenuTemplate.class, MenuJSFileType.class);
-            JSFileTemplateIF fileTemplate = (JSFileTemplateIF) ctor.newInstance(menuTemplate[0], menuJSFileType);
+            JSFileTemplateIF fileTemplate = (JSFileTemplateIF) ctor.newInstance(menuTemplate, menuJSFileType);
             menuJSFileTemplates.add(fileTemplate);
         }
 
@@ -51,9 +52,14 @@ public class MenuTemplateController {
 
         String sourceFolderName = "jsTemplate";
         String zipFileName = "jsTemplateZip"+File.separator+"menuTemplate.zip";
-        FileOutputStream fos = new FileOutputStream(zipFileName);
-        ZipOutputStream zos = new ZipOutputStream(fos);
-        ZipHandler.zipDirectory(sourceFolderName, sourceFolderName, zos);
+        try( FileOutputStream fos = new FileOutputStream(zipFileName);
+            ZipOutputStream zos = new ZipOutputStream(fos)) {
+            ZipHandler.zipDirectory(sourceFolderName, sourceFolderName, zos);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
+
 
 
 

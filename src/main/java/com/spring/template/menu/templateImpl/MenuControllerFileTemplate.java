@@ -15,7 +15,7 @@ public class MenuControllerFileTemplate extends JSFileTemplateAB implements JSFi
 	@Override
 	public String getTemplate() {
 		
-    	template = "Ext.define('"+ menuTemplate.getUrl() + menuFileType.getFileType() + "', {\n"
+    	template = "Ext.define('"+ menuTemplate.getPanelURL() + menuFileType.getFileType() + "', {\n"
     			+ "    extend:'vc.view.common.base.ViewController',\r\n"
     			+ "    alias: 'controller."+getPanelName().toLowerCase()+"',\r\n"
     			+ "    // 조회조건으로 조회한다.\r\n"

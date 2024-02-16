@@ -14,7 +14,7 @@ public class MenuMainGridFileTemplate extends JSFileTemplateAB implements JSFile
 
 	@Override
 	public String getTemplate() {
-    	template = "Ext.define('"+ menuTemplate.getUrl() + menuFileType.getFileType() + "', {\n" +
+    	template = "Ext.define('"+ menuTemplate.getPanelURL() + menuFileType.getFileType() + "', {\n" +
                 "    extend: 'vc.view.common.widget.ExGridEditor',\n" +
                 "    alias: 'widget."+this.getFileName().toLowerCase()+"',\n" +
                 "    selModel: 'rowmodel',\n" +

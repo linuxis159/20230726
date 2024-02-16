@@ -19,8 +19,8 @@ public abstract class JSFileTemplateAB {
 	public JSFileTemplateAB(MenuTemplate menuTemplate, MenuJSFileType menuFileType) {
 		this.menuTemplate = menuTemplate;
 		this.menuFileType = menuFileType;
-		this.fileName = getLastWordByUrl(menuTemplate.getUrl()) + menuFileType.getFileType();
-		this.panelName = getLastWordByUrl(menuTemplate.getUrl());
+		this.fileName = getLastWordByUrl(menuTemplate.getPanelURL()) + menuFileType.getFileType();
+		this.panelName = getLastWordByUrl(menuTemplate.getPanelURL());
 	}
 
 	public JSFileTemplateAB(PopTemplate popTemplate, PopJSFileType popFileType) {

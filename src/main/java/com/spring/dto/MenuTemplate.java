@@ -6,11 +6,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MenuTemplate{
-    private String menuCode;
-    private String alias;
-    private String menuLangPack;
-    private String url;
-    private String region;
-    private String gridInfo;
-    private MenuTemplate[] gridItems;
+    private String panelAuthID;
+    private String panelAlias;
+    private String panelLangPack;
+    private String panelURL;
+    private GridTemplate[] gridItems;
 }

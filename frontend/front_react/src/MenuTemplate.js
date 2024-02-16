@@ -2,15 +2,24 @@ import React, {useState} from 'react';
 import './MenuTemplate.css'
 import GridComponent from "./GridComponent";
 const MenuTemplate = () => {
+    const [panelAlias, setPanelAlias] = useState('');
+    const [panelURL, setPanelURL] = useState('');
+    const [panelAuthID, setPanelAuthID] = useState('');
+    const [panelLangPack, setPanelLangPack] = useState('');
     const [comboBoxes, setComboBoxes] = useState([]);
     const sendData = async () => {
         const serverUrl = process.env.REACT_APP_LOCAL_SERVER_URL;
-        const payload = comboBoxes.map(comboBox => ({
-            menuCode: comboBox.menuCode,
-            alias: comboBox.alias,
-            menuLangPack: comboBox.menuLangPack,
-            url: comboBox.url
-        }));
+        const payload = {
+            panelAlias : panelAlias,
+            panelURL : panelURL,
+            panelAuthID : panelAuthID,
+            panelLangPack : panelLangPack,
+            gridItems : comboBoxes.map(comboBox => ({
+                menuCode: comboBox.menuCode,
+                menuLangPack: comboBox.menuLangPack,
+                region : comboBox.region
+            }))
+        };
             fetch(`${serverUrl}/createMenuTemplate`,{
                 method : 'POST',
                 headers : {
@@ -44,6 +53,46 @@ const MenuTemplate = () => {
     };
     return (
         <div className="menu-template">
+                        <label className="text-label">
+                panelAuthID :
+            </label>
+            <input
+                type='text'
+                name='panelAuthID'
+                className="input-text"
+                value={panelAuthID}
+                onChange={e => {setPanelAuthID(e.target.value)}}/>
+            <br/>
+            <label className="text-label">
+                panelAlias :
+            </label>
+            <input
+                type='text'
+                name='panelAlias'
+                className="input-text"
+                value={panelAlias}
+                onChange={e => {setPanelAlias(e.target.value)}}/>
+            <br/>
+            <label className="text-label">
+                panelLangPack:
+            </label>
+            <input
+                type='text'
+                name='panelLangPack'
+                className="input-text"
+                value={panelLangPack}
+                onChange={e => {setPanelLangPack(e.target.value)}} />
+            <br/>
+            <label className="text-label">
+                panelURL:
+            </label>
+            <input
+                type='text'
+                name='panelURL'
+                className="input-text"
+                value={panelURL}
+                onChange={e => {setPanelURL(e.target.value)}}/>
+            <br/>
             <button onClick={addComboBox}>콤보박스 추가</button>
 
             <div className="menu-template">

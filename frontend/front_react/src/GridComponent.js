@@ -2,13 +2,12 @@ import React, {useState} from 'react';
 import Home from "./Home";
 const GridComponent = ({ id, onUpdate }) => {
     const [menuCode, setMenuCode] = useState('');
-    const [alias, setAlias] = useState('');
     const [menuLangPack, setMenuLangPack] = useState('');
-    const [url, setUrl] = useState('');
+    const [region, setRegion] = useState('');
 
     const handleChange = () => {
         // 여기서 모든 상태를 하나의 객체로 묶어서 전달
-        onUpdate({ menuCode, alias, menuLangPack, url });
+        onUpdate({ menuCode,menuLangPack, region});
     };
 
     return (
@@ -38,16 +37,6 @@ const GridComponent = ({ id, onUpdate }) => {
                 onChange={e => {setMenuCode(e.target.value); handleChange();}}/>
             <br/>
             <label className="text-label">
-                Alias :
-            </label>
-            <input
-                type='text'
-                name='alias'
-                className="input-text"
-                value={alias}
-                onChange={e => {setAlias(e.target.value); handleChange();}}/>
-            <br/>
-            <label className="text-label">
                 MenuLangPack:
             </label>
             <input
@@ -56,17 +45,7 @@ const GridComponent = ({ id, onUpdate }) => {
                 className="input-text"
                 value={menuLangPack}
                 onChange={e => {setMenuLangPack(e.target.value); handleChange();}} />
-            <br/>
-            <label className="text-label">
-                URL:
-            </label>
-            <input
-                type='text'
-                name='url'
-                className="input-text"
-                value={url}
-                onChange={e => {setUrl(e.target.value); handleChange();}}/>
-            <br/>
+
         </div>
     );
 };
